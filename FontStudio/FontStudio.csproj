@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>FontStudio</AssemblyName>
+    <RootNamespace>FontStudio</RootNamespace>
+    <Version>0.4.2</Version>
+    <FileVersion>0.4.2.0</FileVersion>
+    <AssemblyVersion>0.4.2.0</AssemblyVersion>
+    <InformationalVersion>0.4.2-font-manager-readonly</InformationalVersion>
+    <ApplicationIcon />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(FontStudioCurrentUserMutation)' == 'true'">
+    <DefineConstants>$(DefineConstants);FONTSTUDIO_CURRENT_USER_MUTATION</DefineConstants>
+    <InformationalVersion>0.4.2-current-user-font-management</InformationalVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="pilot-policy.json" Condition="'$(SkipPilotPolicyCopy)' != 'true'">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+</Project>

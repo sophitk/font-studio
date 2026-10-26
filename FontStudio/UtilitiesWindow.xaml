@@ -1,0 +1,37 @@
+<Window x:Class="FontStudio.UtilitiesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FontStudio Duplicate Finder" Width="1100" Height="720" MinWidth="900" MinHeight="580"
+        WindowStartupLocation="CenterOwner" Background="#F4F5F7">
+    <Grid Margin="18">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <StackPanel Margin="4,0,0,14">
+            <TextBlock Text="Duplicate Finder" FontSize="26" FontWeight="SemiBold"/>
+            <TextBlock Text="Scan installed fonts for exact and same-face duplicates. This utility reports only and never deletes files."
+                       Foreground="#6E6E73" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Background="White" BorderBrush="#D7D9DE" BorderThickness="1" CornerRadius="6">
+            <Grid Margin="16">
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                <DockPanel LastChildFill="False">
+                    <Button x:Name="ScanDuplicatesButton" Content="Scan installed fonts" Click="ScanDuplicates_Click" Background="#1667D9" Foreground="White"/>
+                    <ProgressBar x:Name="DuplicateProgress" Width="160" Height="6" Margin="14,0" IsIndeterminate="True" Visibility="Collapsed"/>
+                </DockPanel>
+                <TextBlock x:Name="DuplicateSummary" Grid.Row="1" Text="No scan has been run. This utility never deletes files." Foreground="#6E6E73" Margin="4,12"/>
+                <DataGrid x:Name="DuplicateGrid" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Group" Binding="{Binding Group}" Width="85"/>
+                        <DataGridTextColumn Header="Match" Binding="{Binding MatchType}" Width="125"/>
+                        <DataGridTextColumn Header="Family" Binding="{Binding Family}" Width="180"/>
+                        <DataGridTextColumn Header="Style" Binding="{Binding Style}" Width="90"/>
+                        <DataGridTextColumn Header="Version" Binding="{Binding Version}" Width="150"/>
+                        <DataGridTextColumn Header="Size" Binding="{Binding SizeText}" Width="80"/>
+                        <DataGridTextColumn Header="Hash" Binding="{Binding HashShort}" Width="100"/>
+                        <DataGridTextColumn Header="Path" Binding="{Binding Path}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
